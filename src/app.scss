@@ -1,0 +1,787 @@
+ *{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  
+  background-color: #111;
+ }
+
+.full_screen_glass_loading {
+  position: fixed;
+  top:0px;
+  left:0px;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  .spinner_component {
+    width: 100px;
+    height: 100px;
+    &:after { 
+      border-width:6px;
+    }
+  }
+}
+
+.spinner_component {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  &:after {
+    content: " ";
+    display: block;
+    width: 80%;
+    height: 80%;
+    margin: 10%;
+    border-radius: 50%;
+    border: 3px solid white;
+    border-color: white transparent white transparent;
+    animation: spinner_component 1.2s linear infinite;
+  }
+  @keyframes spinner_component {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+// input[disabled]{
+//   &:after {
+//     position: absolute;
+//     content: '';
+//     display: block;
+//     width: 100%;
+//     height: 100%;    
+//     border-radius: 50%;
+//     box-shadow: 0 0 0 1px white;
+//   }
+// }
+
+
+.app{
+  position: absolute;
+  left: 5vh;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.p1_wrapper, .p2_wrapper {
+  position: absolute;
+  img{
+    -webkit-filter: invert(1);
+    filter: invert(1);    
+  }
+}
+.p2_wrapper{
+  left: 1013px;
+}
+
+
+input, textarea{
+  resize: none;
+  position: absolute;
+  background: transparent;
+  border: none;
+  color: white;
+  // border: 2px solid red; box-shadow: 0 0 0 1px red;
+  // border: 2px solid transparent; box-shadow: unset;
+  &:focus{
+    outline: none;
+  }
+  &[type="checkbox"]{
+    &:hover{
+      cursor: pointer;
+    }   /* not currently supported */
+  }
+  &[type="text"], &[type="number"]{
+    box-shadow: unset;
+  }
+}
+input[type="checkbox"]{
+  visibility: hidden;
+}
+input[type="checkbox"] + label:before{
+  /* margin-right: 2px; */
+  content: " ";
+  display:inline-block;
+  vertical-align: baseline;
+  border:1px solid #777;
+}
+input[type="checkbox"]:checked + label:before{
+  background-color: black;
+}
+input[type="checkbox"] + label:before{
+  border-radius:50%;
+}
+
+.actions_wrapper{
+  position:absolute;
+  top: 186px;
+  left: 778px;
+  width: 106px;  
+  display: flex;
+  flex-direction: row-reverse;  
+  background-color: black;
+  svg{
+    color: white;
+    font-size: 16px;
+    background-color: black;
+    margin-left: 12px;
+    &:hover{
+      cursor: pointer;
+      color: #ccc;
+    }      
+  }
+  .lock_action{
+    position: absolute;
+    right: 844px;
+    &.inactive{
+      color: #666;
+      &:hover{
+        cursor: pointer;
+        color: #999;
+      }
+    }
+  }
+}
+.character_wrapper{
+  .character_top_title_data{
+    position: absolute;
+    left: -45px;
+    .character_name{
+      top: 107px;
+      left: 100px;
+      width: 288px;
+      height: 26px;
+      font-size: 20px;
+      text-align: center;
+    }
+    .class_and_level{
+      top: 83px;
+      left: 480px;
+      width: 168px;
+      height: 16px;
+      font-size: 16px;
+    }
+    .background{
+      top: 83px;
+      left: 683px;
+      width: 129px;
+      height: 16px;
+      font-size: 16px;
+    }
+    .player_name{    
+      top: 83px;
+      left: 847px;
+      width: 129px;
+      height: 16px;
+      font-size: 16px;
+    }
+    .race{
+      top: 128px;
+      left: 480px;
+      width: 168px;
+      height: 16px;
+      font-size: 16px;
+    }
+    .alignment{
+      top: 128px;
+      left: 683px;
+      width: 129px;
+      height: 16px;
+      font-size: 16px;
+    }
+    .experience_points{
+      top: 128px;
+      left: 847px;
+      width: 129px;
+      height: 16px;
+      font-size: 16px;
+    }
+  }
+  .character_stats{
+    &>input{
+      left: 34px;
+      width: 61px;
+      height: 41px;      
+      font-size: 30px;
+      text-align: center;
+      &.stat_modifier{
+        left: 52px;
+        width: 23px;
+        height: 20px;
+        font-size: 15px;
+        /* font-weight: bold; */
+      }
+    }
+    .stats_str{
+      top: 261px;
+    }
+    .stats_str_modifier{
+      top: 316px;      
+    }
+    .stats_dex{
+      top: 384px;
+    }
+    .stats_dex_modifier{
+      top: 439px;
+    }
+    .stats_con{
+      top: 507px;
+    }
+    .stats_con_modifier{
+      top: 562px;
+    }
+    .stats_int{
+      top: 630px;
+    }
+    .stats_int_modifier{
+      top: 685px;
+    }
+    .stats_wis{
+      top: 753px;
+    }
+    .stats_wis_modifier{
+      top: 808px;
+    }
+    .stats_cha{
+      top: 876px;
+    }
+    .stats_cha_modifier{
+      top: 931px;
+    }
+  }
+  .inspiration_container{
+    .inspiration{
+      top: 218px;
+      left: 133px;
+      width: 34px;
+      height: 34px;
+      font-size: 25px;
+      text-align: center;
+    }
+  }
+  .proficiency_bonus_container{
+    .proficiency_bonus{
+      top: 282px;
+      left: 133px;
+      width: 34px;
+      height: 35px;
+      font-size: 22px;
+      text-align: center;
+    }
+  }
+  .saving_throws{
+    .saving_throws_proficiencies{
+      input{      
+        width: 12px;
+        /* height: 17px;         */
+        left: 137px;
+      }
+      .saving_throws_str{
+        top: 352px;
+      }
+      .saving_throws_dex{
+        top: 375px;
+      }
+      .saving_throws_con{
+        top: 399px;
+      }
+      .saving_throws_int{
+        top: 422px;
+      }
+      .saving_throws_wis{
+        top: 444px;
+      }
+      .saving_throws_cha{
+        top: 468px;
+      }
+  
+    }
+    .saving_throws_modifiers{
+      &>input[type="text"]{
+        width: 20px;
+        height: 17px;        
+        text-align: center;
+        font-size: 13px;        
+        left: 161px;
+      }
+      .saving_throws_str_modifier{
+        top: 348px;
+      }
+      .saving_throws_dex_modifier{
+        top: 372px;
+      }
+      .saving_throws_con_modifier{
+        top: 395px;
+      }
+      .saving_throws_int_modifier{
+        top: 418px;
+      }
+      .saving_throws_wis_modifier{
+        top: 441px;
+      }
+      .saving_throws_cha_modifier{
+        top: 464px;
+      }
+    }
+  }
+  .skills{
+    .skills_proficiencies{
+      input{
+        width: 12px;      
+        left: 137px;
+      }
+      .skills_acrobatics{
+        top: 550px;
+      }
+      .skills_animal_handling{
+        top: 573px;
+      }
+      .skills_arcana{
+        top: 596px;
+      }
+      .skills_athletics{
+        top: 619px;
+      }
+      .skills_deception{
+        top: 642px;
+      }
+      .skills_history{
+        top: 665px;
+      }
+      .skills_insight{
+        top: 688px;
+      }
+      .skills_intimidation{
+        top: 712px;
+      }
+      .skills_investigation{
+        top: 735px;
+      }
+      .skills_medicine{
+        top: 758px;
+      }
+      .skills_nature{
+        top: 781px;
+      }
+      .skills_perception{
+        top: 804px;
+      }
+      .skills_performance{
+        top: 828px;
+      }
+      .skills_persuasion{
+        top: 851px;
+      }
+      .skills_religion{
+        top: 874px;
+      }
+      .skills_sleight_of_hand{
+        top: 897px;
+      }
+      .skills_stealth{
+        top: 920px;
+      }
+      .skills_survival{
+        top: 944px;
+      }      
+    }
+    .skills_modifiers{
+      &>input[type="text"]{
+        width: 20px;
+        height: 17px;        
+        text-align: center;
+        font-size: 13px;        
+        left: 161px;
+      }
+      .skills_acrobatics_modifier{
+        top: 546px;
+      }
+      .skills_animal_handling_modifier{
+        top: 569px;
+      }
+      .skills_arcana_modifier{
+        top: 592px;
+      }
+      .skills_athletics_modifier{
+        top: 615px;
+      }
+      .skills_deception_modifier{
+        top: 638px;
+      }
+      .skills_history_modifier{
+        top: 661px;
+      }
+      .skills_insight_modifier{
+        top: 684px;
+      }
+      .skills_intimidation_modifier{
+        top: 707px;
+      }
+      .skills_investigation_modifier{
+        top: 730px;
+      }
+      .skills_medicine_modifier{
+        top: 754px;
+      }
+      .skills_nature_modifier{
+        top: 777px;
+      }
+      .skills_perception_modifier{
+        top: 800px;
+      }
+      .skills_performance_modifier{
+        top: 823px;
+      }
+      .skills_persuasion_modifier{
+        top: 846px;
+      }
+      .skills_religion_modifier{
+        top: 870px;
+      }
+      .skills_sleight_of_hand_modifier{
+        top: 893px;
+      }
+      .skills_stealth_modifier{
+        top: 916px;
+      }
+      .skills_survival_modifier{
+        top: 939px;
+      }
+    }
+  }
+  .combat_stats{
+    input{      
+      text-align: center;
+    }
+    .armor_class{
+      top: 239px;
+      left: 371px;
+      width: 39px;
+      height: 37px;
+      font-size: 28px;
+    }
+    .initiative{
+      top: 239px;
+      left: 460px;
+      width: 55px;
+      height: 50px;
+      font-size: 28px;
+    }
+    .speed{
+      top: 239px;
+      left: 560px;
+      width: 55px;
+      height: 50px;
+      font-size: 28px;
+    }
+    .hit_points_max{
+      top: 334px;
+      left: 468px;
+      width: 148px;
+      height: 16px;
+      font-size: 16px;
+      text-align: left;
+    }
+    .hit_points_current{
+      top: 361px;
+      left: 365px;
+      width: 250px;
+      height: 48px;
+      font-size: 45px;
+    }
+    .temp_hit_points{
+      top: 451px;
+      left: 365px;
+      width: 250px;
+      height: 48px;
+      font-size: 35px;
+    }
+    .hit_dice_total{
+      top: 543px;
+      left: 392px;
+      width: 76px;
+      height: 14px;
+      font-size: 13px;
+      text-align: left; 
+    }
+    .hit_dice{
+      top: 564px;
+      left: 367px;
+      width: 102px;
+      height: 33px;
+      font-size: 27px;
+    }
+
+  }
+  .death_saving_throws{
+    input{      
+      width: 17px;
+      text-align: center;
+      height: 17px;
+    }
+    .death_saving_throws_success_1{
+      top: 548px;
+      left: 558px;
+    }
+    .death_saving_throws_success_2{
+      top: 548px;
+      left: 580px;
+    }
+    .death_saving_throws_success_3{
+      top: 548px;
+      left: 602px;
+    }
+    .death_saving_throws_failure_1{
+      top: 574px;
+      left: 558px;
+    }
+    .death_saving_throws_failure_2{
+      top: 574px;
+      left: 580px;
+    }
+    .death_saving_throws_failure_3{
+      top: 574px;
+      left: 602px;
+    }
+  }
+  .attacks_and_spellcasting{
+    &>input{
+      font-size: 16px;
+      text-align: left;      
+      height: 21px;
+    }
+    .weapon_1_name{
+      top: 672px;
+      left: 352px;
+      width: 103px;
+    }
+    .weapon_1_attack_bonus{
+      top: 672px;
+      left: 469px;
+      width: 47px;
+    }
+    .weapon_1_damage{
+      top: 672px;
+      left: 531px;
+      width: 98px;
+    }
+    .weapon_2_name{
+      top: 706px;
+      left: 352px;
+      width: 103px;
+    }
+    .weapon_2_attack_bonus{
+      top: 706px;
+      left: 469px;
+      width: 47px;
+    }
+    .weapon_2_damage{
+      top: 706px;
+      left: 531px;
+      width: 98px;
+    }
+    .weapon_3_name{
+      top: 741px;
+      left: 352px;
+      width: 103px;
+    }
+    .weapon_3_attack_bonus{
+      top: 741px;
+      left: 469px;
+      width: 47px;
+    }
+    .weapon_3_damage{
+      top: 741px;
+      left: 531px;
+      width: 98px;
+    }
+    .spellcasting_text{
+      top: 775px;
+      left: 352px;
+      width: 277px;
+      height: 192px;
+    }
+  }
+  .equipment{
+    .equipment_text{      
+      top: 1016px;
+      left: 430px;
+      width: 199px;
+      height: 272px;
+    }
+    .copper_points{
+      top: 1024px;
+      left: 364px;
+      width: 42px;
+      height: 29px;
+      font-size: 24px;
+      text-align: center;
+    }
+    .silver_points{
+      top: 1069px;
+      left: 364px;
+      width: 42px;
+      height: 29px;
+      font-size: 24px;
+      text-align: center;
+    }
+    .electrum_points{
+      top: 1113px;
+      left: 364px;
+      width: 42px;
+      height: 29px;
+      font-size: 24px;
+      text-align: center;
+    }
+    .gold_points{
+      top: 1158px;
+      left: 364px;
+      width: 42px;
+      height: 29px;
+      font-size: 24px;
+      text-align: center;
+    }
+    .platinum_points{
+      top: 1202px;
+      left: 364px;
+      width: 42px;
+      height: 29px;
+      font-size: 24px;
+      text-align: center;
+    }
+  }
+  .passive_wisdom_container{
+    .passive_wisdom{
+      top: 1009px;
+      left: 23px;
+      width: 31px;
+      height: 29px;
+      font-size: 22px;
+      text-align: center;
+    }
+  }
+  .other_proficiencies_and_languages_container{
+    .other_proficiencies_and_languages_text{
+      top: 1074px;
+      left: 28px;
+      width: 278px;
+      height: 214px;
+    }
+  }
+  .character_traits{
+    textarea{
+      font-size: 12px;
+    }
+    .personality_traits{
+      top: 238px;
+      left: 689px;
+      width: 253px;
+      height: 75px;
+    }
+    .ideals{
+      top: 355px;
+      left: 689px;
+      width: 253px;
+      height: 53px;
+    }
+    .bonds{      
+      top: 452px;
+      left: 689px;
+      width: 253px;
+      height: 53px;
+    }
+    .flaws{
+      top: 546px;
+      left: 689px;
+      width: 253px;
+      height: 53px;
+    }
+    .features_and_traits{
+      top: 661px;
+      left: 678px;
+      width: 276px;
+      height: 627px;
+      text-align: justify;
+    }
+  }
+}
+.character_spells{
+  .spellcasting_class{
+    top: 96px;
+    left: 1082px;
+    width: 291px;
+    height: 20px;
+    font-size: 16px;
+    text-align: right;
+  }
+  .spellcasting_ability{
+    top: 79px;
+    left: 1431px;
+    width: 80px;
+    height: 32px;
+    font-size: 21px;
+    text-align: center;
+  }
+  .spell_save_dc{
+    top: 79px;
+    left: 1578px;
+    width: 81px;
+    height: 32px;
+    font-size: 21px;
+    text-align: center;
+  }
+  .spell_attack_bonus{
+    top: 79px;
+    left: 1730px;
+    width: 81px;
+    height: 32px;
+    font-size: 21px;
+    text-align: center;
+  }
+  .spells_level_one{
+    .spell_level_one_slots_total{
+      top: 457px;
+      left: 1086px;
+      width: 49px;
+      height: 25px;
+      font-size: 21px;
+      text-align: center;
+    }
+    .spell_level_one_slots_expended{
+      top: 457px;
+      left: 1163px;
+      width: 127px;
+      height: 25px;
+      font-size: 21px;
+      text-align: center;
+    }
+    .spell_level_one_spell_1{
+      top: 524px;
+      left: 1071px;
+      width: 223px;
+      height: 11px;
+      font-size: 12px;
+    }
+    .spell_level_one_spell_2{
+      top: 545px;
+      left: 1071px;
+      width: 223px;
+      height: 11px;
+      font-size: 12px;
+    }
+  }
+}
