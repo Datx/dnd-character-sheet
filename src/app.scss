@@ -2,7 +2,7 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   
-  background-color: #111;
+  background-color: #000;
  }
 
 .full_screen_glass_loading {
@@ -77,7 +77,7 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-.p1_wrapper, .p2_wrapper {
+.p1_wrapper, .p2_wrapper, .p3_wrapper {
   position: absolute;
   img{
     -webkit-filter: invert(1);
@@ -86,6 +86,19 @@ input[type=number] {
 }
 .p2_wrapper{
   left: 1013px;
+  &>img{
+    width: 885px;    
+    position: relative;
+    left: 7px;
+  }
+}
+.p3_wrapper{
+  left: 1915px;;
+  &>img{
+    width: 885px;    
+    position: relative;
+    left: 7px;
+  }
 }
 
 
@@ -145,6 +158,7 @@ input[type="checkbox"] + label:before{
     }      
   }
   .lock_action{
+    color: #fbf243;
     position: absolute;
     right: 844px;
     &.inactive{
@@ -725,34 +739,96 @@ input[type="checkbox"] + label:before{
     left: 1082px;
     width: 291px;
     height: 20px;
-    font-size: 16px;
-    text-align: right;
+    font-size: 18px;
+    text-align: center;
   }
   .spellcasting_ability{
-    top: 79px;
-    left: 1431px;
+    top: 75px;
+    left: 1433px;
     width: 80px;
     height: 32px;
     font-size: 21px;
     text-align: center;
   }
   .spell_save_dc{
-    top: 79px;
-    left: 1578px;
+    top: 75px;
+    left: 1581px;
     width: 81px;
     height: 32px;
     font-size: 21px;
     text-align: center;
   }
   .spell_attack_bonus{
-    top: 79px;
-    left: 1730px;
+    top: 75px;
+    left: 1734px;
     width: 81px;
     height: 32px;
     font-size: 21px;
     text-align: center;
   }
+  .cantrips{
+    .cantrip{
+      left: 1071px;
+      width: 223px;
+      height: 11px;
+      font-size: 12px;    
+    }
+    .cantrip_1{
+      top: 253px;
+    }
+    .cantrip_2{
+      top: 274px;
+    }
+    .cantrip_3{
+      top: 295px;
+    }
+    .cantrip_4{
+      top: 315px;
+    }
+    .cantrip_5{
+      top: 335px;
+    }
+    .cantrip_6{
+      top: 356px;
+    }
+    .cantrip_7{
+      top: 376px;
+    }
+    .cantrip_8{
+      top: 397px;
+    }
+  }
+  .spells_level_one_prepared{
+    .spell_prepared{
+      font-size: 11px;     
+      left: 1049px;
+    }
+    .spell_level_one_spell_1_prepared{
+      top: 525px;
+    }
+    .spell_level_one_spell_2_prepared{
+      top: 546px;
+    }
+    .spell_level_one_spell_3_prepared{
+      top: 567px;
+    }
+    .spell_level_one_spell_4_prepared{
+      top: 588px;
+    }
+    .spell_level_one_spell_5_prepared{
+      top: 608px;
+    }
+    .spell_level_one_spell_6_prepared{
+      top: 629px;
+    }
+  }
   .spells_level_one{
+    .spell_level_one{
+      left: 1071px;
+      width: 223px;
+      height: 11px;
+      font-size: 12px;
+    }
     .spell_level_one_slots_total{
       top: 457px;
       left: 1086px;
@@ -766,22 +842,203 @@ input[type="checkbox"] + label:before{
       left: 1163px;
       width: 127px;
       height: 25px;
-      font-size: 21px;
+      font-size: 18px;
       text-align: center;
     }
     .spell_level_one_spell_1{
-      top: 524px;
-      left: 1071px;
-      width: 223px;
-      height: 11px;
-      font-size: 12px;
+      top: 524px;      
     }
     .spell_level_one_spell_2{
       top: 545px;
-      left: 1071px;
-      width: 223px;
-      height: 11px;
-      font-size: 12px;
     }
+    .spell_level_one_spell_3{
+      top: 566px;
+    }
+    .spell_level_one_spell_4{
+      top: 587px;
+    }
+    .spell_level_one_spell_5{
+      top: 607px;
+    }
+    .spell_level_one_spell_6{
+      top: 627px;
+    }
+  }
+  .spells_bottom_notes_wrapper{
+    .spells_bottom_notes{
+      top: 1164px;
+      left: 1040px;
+      width: 833px;
+      height: 180px;
+      font-size: 12px;
+      background-color: #111;
+      border-radius: 5px;
+      border: white 1px solid;
+    }
+  }
+}
+.character_data{
+  .character_top_data{
+    &>{
+      font-size: 16px;
+    }
+    .character_name{
+      top: 93px;
+      left: 1989px;
+      width: 290px;
+      height: 26px;
+      font-size: 20px;
+      text-align: center;
+    }
+    .age{
+      top: 72px;
+      left: 2308px;
+      width: 139px;
+      height: 16px;   
+    }
+    .height{
+      top: 72px;
+      left: 2470px;
+      width: 119px;
+      height: 16px;  
+    }
+    .weight{
+      top: 72px;
+      left: 2613px;
+      width: 119px;
+      height: 16px;  
+    }
+    .eyes{
+      top: 110px;
+      left: 2308px;
+      width: 139px;
+      height: 16px;  
+    }
+    .skin{
+      top: 110px;
+      left: 2470px;
+      width: 119px;
+      height: 16px;  
+    }
+    .hair{
+      top: 110px;
+      left: 2613px;
+      width: 119px;
+      height: 16px;  
+    }
+  }
+  .character_data_areas_wrapper{
+    .symbol_name{
+      top: 220px;
+      left: 2531px;
+      width: 191px;
+      height: 19px;
+      font-size: 17px;
+      text-align: left;
+    }
+    .character_appearance{
+      top: 186px;
+      left: 1969px;
+      width: 233px;
+      height: 316px;
+    }
+    .character_backstory{
+      top: 558px;
+      left: 1969px;
+      width: 233px;
+      height: 525px;
+    }
+    .allies_and_organizations{
+      top: 191px;
+      left: 2244px;
+      width: 246px;
+      height: 306px;
+    }
+    .additional_features_and_traits{
+      top: 544px;
+      left: 2244px;
+      width: 505px;
+      height: 286px;
+    }
+    .treasure{
+      top: 876px;
+      left: 2244px;
+      width: 506px;
+      height: 211px;
+    }
+  }
+  .character_data_bottom_notes_wrapper{
+    .character_data_bottom_notes{
+      top: 1164px;
+      left: 1959px;
+      width: 804px;
+      height: 180px;
+      font-size: 12px;
+      background-color: #111;
+      border-radius: 5px;
+      border: white 1px solid;
+    }
+  }
+}
+.bottom_menu_wrapper{
+  margin: auto;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: -20px;
+  width: 400px;
+  height: 60px;
+  background-color: black;
+  border: 3px solid white;
+  border-bottom: 0px;
+  border-radius: 100px 100px 0px 0px;
+  box-shadow: 0px 0px 5px 0px white;
+  transition: bottom 0.5s ease-in-out;
+  .bottom_menu_actions{
+    display:flex;
+    justify-content: space-between;
+    background-color: transparent;
+    margin-left: 33px;
+    margin-right: 40px;
+    margin-top: 10px;
+    .hide_bottom_menu_arrow{
+      margin-left: 16px;
+      margin-top: -2px;
+    }    
+    .left_bottom_actions &>:first-child{
+      margin-left: 0px;
+    }
+    .left_bottom_actions, .right_bottom_actions{
+      &>svg{
+        margin-left: 20px;
+      }      
+      .lock_action{
+        color: #fbf243;
+        &.inactive{
+          color: #666;
+          &:hover{
+            cursor: pointer;
+            color: #999;
+          }
+        }
+      }
+    }
+  }
+  &.hidden_menu{
+    bottom: -45px;
+    .hide_bottom_menu_arrow{
+      transform: rotate(180deg);
+      margin-top: -11px;
+    }
+  }
+  svg{
+    transition: transform 0.5s ease-in-out, margin 0.5s ease-in-out;    
+    color: white;
+    font-size: 20px;
+    background-color: transparent;
+    &:hover{
+      cursor: pointer;
+      color: #ccc;
+    }      
   }
 }

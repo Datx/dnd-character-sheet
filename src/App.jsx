@@ -28,9 +28,14 @@ class App extends Component {
     this.state = {
       jsonData: {},
       loadingView: true,
-      safeLock: false,
+      safeLock: true,
+      showBottomMenu: true,
     };
   }
+  
+  firstPage = createRef();
+  secondPage = createRef();
+  thirdPage = createRef();
 
   componentDidMount =  () => {    
     this.getCharacterData();
@@ -79,7 +84,7 @@ class App extends Component {
   handleOnChangeSheet = (event) => {
     const {name, value, checked} = event.target;
     if(!this.loadingView){
-      if(!this.state.safeLock || ["hit_points_current", "inspiration", "temp_hit_points", "equipment_text"].includes(name)){
+      if(!this.state.safeLock || ["hit_points_current", "inspiration", "temp_hit_points", "equipment_text", "spell_level_one_slots_expended"].includes(name)){
         let newJsonData = {};
         if(event.target.type == "radio") {
           newJsonData = {...this.state.jsonData, [name]: this.state.jsonData[name] ? undefined : true};
@@ -140,7 +145,27 @@ class App extends Component {
   }
 
   handleSafetyLockData = () => {
+    // this.secondPage.current.scrollIntoView();  
     this.setState({ safeLock: !this.state.safeLock });
+  }
+
+  handleOpenSpellsPage = () => {
+    window.open("https://dndspellslist.com/spells", '_blank');
+  }
+
+  handleFocusFirstPage = () => {
+    this.firstPage.current.scrollIntoView();  
+  }
+  handleFocusSecondPage = () => {
+    this.secondPage.current.scrollIntoView();  
+  }
+  handleFocusThirdPage = () => {
+    this.thirdPage.current.scrollIntoView();   
+  }
+  
+
+  handleHideBottomMenu = () => {
+    this.setState({showBottomMenu: !this.state.showBottomMenu})
   }
 
 
@@ -151,18 +176,23 @@ class App extends Component {
     return(
       <div className="app">
         {this.state.loadingView && (<div className="full_screen_glass_loading"><Spinner/></div>)}
-        <div className="p1_wrapper">        
+        <div className="p1_wrapper" ref={this.firstPage}>        
           {/* <img src={P1}></img>  */}
           <img src="https://i.imgur.com/ObSEiLf.png"></img>
         </div>
-        <div className="p2_wrapper">        
+        <div className="p2_wrapper" ref={this.secondPage}>        
           {/* <img src={P1}></img>  */}
-          <img src="https://iili.io/JvEz40N.png"></img>
+          {/* <img src="https://iili.io/JvEz40N.png"></img> */}
+          <img src="https://imgur.com/5OTTqaB.png"></img>
+        </div>
+        <div className="p3_wrapper" ref={this.thirdPage}>
+          <img src="https://imgur.com/kiGcdG7.png"></img> 
         </div>
         <div className="actions_wrapper">
-          <FontAwesomeIcon onClick={this.handleSafetyLockData} icon={"fas fa-lock"} className={'lock_action' + (this.state.safeLock ? "" : " inactive")}/>
+          <FontAwesomeIcon onClick={this.handleSafetyLockData} icon={"fas "+ (this.state.safeLock ? "fa-lock" : "fa-lock-open")} className={'lock_action' + (this.state.safeLock ? "" : " inactive")}/>
           <FontAwesomeIcon onClick={this.handleDownloadCharacterJson} icon={"fas fa-download"}/>
-          <FontAwesomeIcon onClick={this.handleOpenPlayersHandbook} icon={"fas fa-book"}/>          
+          <FontAwesomeIcon onClick={this.handleOpenPlayersHandbook} icon={"fas fa-book"}/>   
+          <FontAwesomeIcon onClick={this.handleOpenSpellsPage} icon={"fa-solid fa-wand-sparkles"}/>       
         </div>
         <div className="character_wrapper">
           <div className="character_top_title_data">
@@ -319,11 +349,73 @@ class App extends Component {
             <input type="text" name="spell_save_dc" className='spell_save_dc' value={this.state.jsonData.spell_save_dc} onChange={this.handleOnChangeSheet}/>
             <input type="text" name="spell_attack_bonus" className='spell_attack_bonus' value={this.state.jsonData.spell_attack_bonus} onChange={this.handleOnChangeSheet}/>
           </div>
+          <div className="cantrips">
+            <input type="text" name="cantrip_1" className='cantrip cantrip_1' value={this.state.jsonData.cantrip_1} onChange={this.handleOnChangeSheet}/>
+            <input type="text" name="cantrip_2" className='cantrip cantrip_2' value={this.state.jsonData.cantrip_2} onChange={this.handleOnChangeSheet}/>
+            <input type="text" name="cantrip_3" className='cantrip cantrip_3' value={this.state.jsonData.cantrip_3} onChange={this.handleOnChangeSheet}/>
+            <input type="text" name="cantrip_4" className='cantrip cantrip_4' value={this.state.jsonData.cantrip_4} onChange={this.handleOnChangeSheet}/>
+            <input type="text" name="cantrip_5" className='cantrip cantrip_5' value={this.state.jsonData.cantrip_5} onChange={this.handleOnChangeSheet}/>
+            <input type="text" name="cantrip_6" className='cantrip cantrip_6' value={this.state.jsonData.cantrip_6} onChange={this.handleOnChangeSheet}/>
+            <input type="text" name="cantrip_7" className='cantrip cantrip_7' value={this.state.jsonData.cantrip_7} onChange={this.handleOnChangeSheet}/>
+            <input type="text" name="cantrip_8" className='cantrip cantrip_8' value={this.state.jsonData.cantrip_8} onChange={this.handleOnChangeSheet}/>
+          </div>
+          <div className="spells_level_one_prepared">
+            <input type="radio" name="spell_level_one_spell_1_prepared" className='spell_prepared spell_level_one_prepared spell_level_one_spell_1_prepared' value={this.state.jsonData.spell_level_one_spell_1_prepared} onClick={this.handleOnChangeSheet} checked={this.state.jsonData.spell_level_one_spell_1_prepared} disabled={this.state.safeLock}/>
+            <input type="radio" name="spell_level_one_spell_2_prepared" className='spell_prepared spell_level_one_prepared spell_level_one_spell_2_prepared' value={this.state.jsonData.spell_level_one_spell_2_prepared} onClick={this.handleOnChangeSheet} checked={this.state.jsonData.spell_level_one_spell_2_prepared} disabled={this.state.safeLock}/>
+            <input type="radio" name="spell_level_one_spell_3_prepared" className='spell_prepared spell_level_one_prepared spell_level_one_spell_3_prepared' value={this.state.jsonData.spell_level_one_spell_3_prepared} onClick={this.handleOnChangeSheet} checked={this.state.jsonData.spell_level_one_spell_3_prepared} disabled={this.state.safeLock}/>
+            <input type="radio" name="spell_level_one_spell_4_prepared" className='spell_prepared spell_level_one_prepared spell_level_one_spell_4_prepared' value={this.state.jsonData.spell_level_one_spell_4_prepared} onClick={this.handleOnChangeSheet} checked={this.state.jsonData.spell_level_one_spell_4_prepared} disabled={this.state.safeLock}/>
+            <input type="radio" name="spell_level_one_spell_5_prepared" className='spell_prepared spell_level_one_prepared spell_level_one_spell_5_prepared' value={this.state.jsonData.spell_level_one_spell_5_prepared} onClick={this.handleOnChangeSheet} checked={this.state.jsonData.spell_level_one_spell_5_prepared} disabled={this.state.safeLock}/>
+            <input type="radio" name="spell_level_one_spell_6_prepared" className='spell_prepared spell_level_one_prepared spell_level_one_spell_6_prepared' value={this.state.jsonData.spell_level_one_spell_6_prepared} onClick={this.handleOnChangeSheet} checked={this.state.jsonData.spell_level_one_spell_6_prepared} disabled={this.state.safeLock}/>
+          </div>
           <div className="spells_level_one">
             <input type="text" name="spell_level_one_slots_total" className='spell_level_one_slots_total' value={this.state.jsonData.spell_level_one_slots_total} onChange={this.handleOnChangeSheet}/>
             <input type="text" name="spell_level_one_slots_expended" className='spell_level_one_slots_expended' value={this.state.jsonData.spell_level_one_slots_expended} onChange={this.handleOnChangeSheet}/>
-            <input type="text" name="spell_level_one_spell_1" className='spell_level_one_spell_1' value={this.state.jsonData.spell_level_one_spell_1} onChange={this.handleOnChangeSheet}/>
-            <input type="text" name="spell_level_one_spell_2" className='spell_level_one_spell_2' value={this.state.jsonData.spell_level_one_spell_2} onChange={this.handleOnChangeSheet}/>
+            <input type="text" name="spell_level_one_spell_1" className='spell_level_one spell_level_one_spell_1' value={this.state.jsonData.spell_level_one_spell_1} onChange={this.handleOnChangeSheet}/>
+            <input type="text" name="spell_level_one_spell_2" className='spell_level_one spell_level_one_spell_2' value={this.state.jsonData.spell_level_one_spell_2} onChange={this.handleOnChangeSheet}/>
+            <input type="text" name="spell_level_one_spell_3" className='spell_level_one spell_level_one_spell_3' value={this.state.jsonData.spell_level_one_spell_3} onChange={this.handleOnChangeSheet}/>
+            <input type="text" name="spell_level_one_spell_4" className='spell_level_one spell_level_one_spell_4' value={this.state.jsonData.spell_level_one_spell_4} onChange={this.handleOnChangeSheet}/>
+            <input type="text" name="spell_level_one_spell_5" className='spell_level_one spell_level_one_spell_5' value={this.state.jsonData.spell_level_one_spell_5} onChange={this.handleOnChangeSheet}/>
+            <input type="text" name="spell_level_one_spell_6" className='spell_level_one spell_level_one_spell_6' value={this.state.jsonData.spell_level_one_spell_6} onChange={this.handleOnChangeSheet}/>
+          </div>
+          <div className="spells_bottom_notes_wrapper">
+            <textarea type="text" name="spells_bottom_notes" className='spells_bottom_notes' value={this.state.jsonData.spells_bottom_notes} onChange={this.handleOnChangeSheet}/>
+          </div>
+        </div>
+        <div className="character_data">
+          <div className="character_top_data">
+            <input type="text" name="character_name" className='character_name' value={this.state.jsonData.character_name} onChange={this.handleOnChangeSheet}/>
+            <input type="text" name="age" className='age' value={this.state.jsonData.age} onChange={this.handleOnChangeSheet}/>    
+            <input type="text" name="height" className='height' value={this.state.jsonData.height} onChange={this.handleOnChangeSheet}/>
+            <input type="text" name="weight" className='weight' value={this.state.jsonData.weight} onChange={this.handleOnChangeSheet}/>
+            <input type="text" name="eyes" className='eyes' value={this.state.jsonData.eyes} onChange={this.handleOnChangeSheet}/>
+            <input type="text" name="skin" className='skin' value={this.state.jsonData.skin} onChange={this.handleOnChangeSheet}/>
+            <input type="text" name="hair" className='hair' value={this.state.jsonData.hair} onChange={this.handleOnChangeSheet}/>
+          </div>
+          <div className="character_data_areas_wrapper">
+            <input type="text" name="symbol_name" className='symbol_name' value={this.state.jsonData.symbol_name} onChange={this.handleOnChangeSheet}/>
+            <textarea type="text" name="character_appearance" className='character_appearance' value={this.state.jsonData.character_appearance} onChange={this.handleOnChangeSheet}/>
+            <textarea type="text" name="character_backstory" className='character_backstory' value={this.state.jsonData.character_backstory} onChange={this.handleOnChangeSheet}/>
+            <textarea type="text" name="allies_and_organizations" className='allies_and_organizations' value={this.state.jsonData.allies_and_organizations} onChange={this.handleOnChangeSheet}/>
+            <textarea type="text" name="additional_features_and_traits" className='additional_features_and_traits' value={this.state.jsonData.additional_features_and_traits} onChange={this.handleOnChangeSheet}/>
+            <textarea type="text" name="treasure" className='treasure' value={this.state.jsonData.treasure} onChange={this.handleOnChangeSheet}/>
+          </div>
+          <div className="character_data_bottom_notes_wrapper">
+            <textarea type="text" name="character_data_bottom_notes" className='character_data_bottom_notes' value={this.state.jsonData.character_data_bottom_notes} onChange={this.handleOnChangeSheet}/>
+          </div>
+        </div>
+        <div className={"bottom_menu_wrapper" + (this.state.showBottomMenu ? "" : " hidden_menu")}>
+          <div className="bottom_menu_actions">
+            <div className="left_bottom_actions">
+              <FontAwesomeIcon icon="fa-solid fa-id-card-clip" onClick={this.handleFocusFirstPage} title={"Centrar página de personaje"}/>
+              <FontAwesomeIcon icon="fa-solid fa-hat-wizard" onClick={this.handleFocusSecondPage} title={"Centrar hechizos"}/>
+              <FontAwesomeIcon icon="fa-solid fa-newspaper" onClick={this.handleFocusThirdPage}/>
+            </div>
+            <FontAwesomeIcon icon="fa-solid fa-chevron-down" className='hide_bottom_menu_arrow' onClick={this.handleHideBottomMenu}/>
+            <div className="right_bottom_actions">
+              <FontAwesomeIcon onClick={this.handleOpenPlayersHandbook} icon={"fas fa-book"} title={"Abrir libro 5e (Players Handbook)"}/>   
+              <FontAwesomeIcon onClick={this.handleOpenSpellsPage} icon={"fa-solid fa-wand-sparkles"} title={"Abrir web de hechizos"}/> 
+              <FontAwesomeIcon onClick={this.handleSafetyLockData} icon={"fas "+ (this.state.safeLock ? "fa-lock" : "fa-lock-open")} className={'lock_action' + (this.state.safeLock ? "" : " inactive")} title={"Alternar modo seguro"}/>
+            </div>
           </div>
         </div>
       </div>
