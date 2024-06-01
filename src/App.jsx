@@ -28,7 +28,7 @@ class App extends Component {
     this.state = {
       jsonData: {},
       loadingView: true,
-      safeLock: true,
+      safeLock: false,
       showBottomMenu: true,
     };
   }
@@ -84,7 +84,7 @@ class App extends Component {
   handleOnChangeSheet = (event) => {
     const {name, value, checked} = event.target;
     if(!this.loadingView){
-      if(!this.state.safeLock || ["hit_points_current", "inspiration", "temp_hit_points", "equipment_text", "spell_level_one_slots_expended"].includes(name)){
+      if(!this.state.safeLock || ["hit_points_current", "inspiration", "temp_hit_points", "equipment_text", "spell_level_one_slots_expended", "hit_dice"].includes(name)){
         let newJsonData = {};
         if(event.target.type == "radio") {
           newJsonData = {...this.state.jsonData, [name]: this.state.jsonData[name] ? undefined : true};
@@ -145,8 +145,7 @@ class App extends Component {
   }
 
   handleSafetyLockData = () => {
-    // this.secondPage.current.scrollIntoView();  
-    this.setState({ safeLock: !this.state.safeLock });
+    // this.setState({ safeLock: !this.state.safeLock });
   }
 
   handleOpenSpellsPage = () => {
@@ -189,7 +188,7 @@ class App extends Component {
           <img src="https://imgur.com/kiGcdG7.png"></img> 
         </div>
         <div className="actions_wrapper">
-          <FontAwesomeIcon onClick={this.handleSafetyLockData} icon={"fas "+ (this.state.safeLock ? "fa-lock" : "fa-lock-open")} className={'lock_action' + (this.state.safeLock ? "" : " inactive")}/>
+          {/* <FontAwesomeIcon onClick={this.handleSafetyLockData} icon={"fas "+ (this.state.safeLock ? "fa-lock" : "fa-lock-open")} className={'lock_action' + (this.state.safeLock ? "" : " inactive")}/> */}
           <FontAwesomeIcon onClick={this.handleDownloadCharacterJson} icon={"fas fa-download"}/>
           <FontAwesomeIcon onClick={this.handleOpenPlayersHandbook} icon={"fas fa-book"}/>   
           <FontAwesomeIcon onClick={this.handleOpenSpellsPage} icon={"fa-solid fa-wand-sparkles"}/>       
@@ -414,7 +413,7 @@ class App extends Component {
             <div className="right_bottom_actions">
               <FontAwesomeIcon onClick={this.handleOpenPlayersHandbook} icon={"fas fa-book"} title={"Abrir libro 5e (Players Handbook)"}/>   
               <FontAwesomeIcon onClick={this.handleOpenSpellsPage} icon={"fa-solid fa-wand-sparkles"} title={"Abrir web de hechizos"}/> 
-              <FontAwesomeIcon onClick={this.handleSafetyLockData} icon={"fas "+ (this.state.safeLock ? "fa-lock" : "fa-lock-open")} className={'lock_action' + (this.state.safeLock ? "" : " inactive")} title={"Alternar modo seguro"}/>
+              {/* <FontAwesomeIcon onClick={this.handleSafetyLockData} icon={"fas "+ (this.state.safeLock ? "fa-lock" : "fa-lock-open")} className={'lock_action' + (this.state.safeLock ? "" : " inactive")} title={"Alternar modo seguro"}/> */}
             </div>
           </div>
         </div>
